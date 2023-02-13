@@ -2,7 +2,11 @@ function doDate()
 {
     var date = new Date();
     var day = date.toString().substring(0,3);
-    var datetime = date.getDate() + "-" + (date.getMonth()+1)  + "-" + date.getFullYear() + ", " + date.getHours() + ":" + date.getMinutes();
+    var d = (date.getDate() < 10) ? ("0"+date.getDate()) : date.getDate();
+    var m = (date.getMonth()+1 < 10) ? ("0"+(date.getMonth()+1)) : (date.getMonth()+1);
+    var hr = (date.getHours() < 10) ? ("0"+date.getHours()) : date.getHours();
+    var mn = (date.getMinutes() < 10) ? ("0"+date.getMinutes()) : date.getMinutes();
+    var datetime = d + "-" + m  + "-" + date.getFullYear() + ", " + hr + ":" + mn;
     console.log(day + ", " + datetime);
     document.getElementsByClassName("day")[0].innerText = day + ", " + datetime + " hrs";
 }
@@ -56,10 +60,10 @@ function search_appear(x)
 
 function timeConverter(UNIX_timestamp)
 {
-    var a = new Date(UNIX_timestamp * 1000);
-    var hour = a.getHours();
-    var min = a.getMinutes();
-    var time = hour + ':' + min + ' hrs' ;
+    var date = new Date(UNIX_timestamp * 1000);
+    var hr = (date.getHours() < 10) ? ("0"+date.getHours()) : date.getHours();
+    var mn = (date.getMinutes() < 10) ? ("0"+date.getMinutes()) : date.getMinutes();
+    var time = hr + ':' + mn + ' hrs' ;
     return time;
 }
 
