@@ -7,6 +7,7 @@ body
     background-attachment: fixed;
     text-align: center;
     margin: 0px;
+    overflow-x: hidden;
 }
   
 .bg-text 
@@ -255,7 +256,7 @@ body
 .left
 {
     background-color: rgb(255, 255, 255, 0.7);
-    width: 50%;
+    width: 45%;
     margin: 2.5%;
     padding: 1%;
     border-radius: 1%;
@@ -488,6 +489,7 @@ body
     #sunrise-sunset ul
     {
         padding: 0px;
+        margin: 0.5rem;
         margin-bottom: 0px;
         width: 70%;
     }
@@ -520,6 +522,7 @@ body
     #high-low-temp ul
     {
         padding: 0px;
+        margin: 0.5rem;
         margin-bottom: 0px;
         width: 70%;
     }
@@ -548,40 +551,88 @@ body
         width: 20%;
     }
 
-    #wind_dir p
+    #wind_dir ul
     {
-        font-size: 0.8rem;
         padding: 0px;
+        margin: 0.5rem;
         margin-bottom: 0px;
         width: 70%;
     }
+
+    #wind_dir ul li
+    {
+        font-size: 0.8rem;
+    }
 }
 
-.daily
+.same_day_prediction
 {
     background-color: rgba(0, 0, 0, 0.7);
     width: 90%;
     margin: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem 0.2rem;
+    overflow-x: scroll;
 }
 
-.sub-head-small
+.prediction_container
 {
-    color: rgba(255, 255, 255, 0.6);
-    font-family: monospace;
+    display: inline-flex;
+    overflow-x: scroll;
+}
+
+::-webkit-scrollbar 
+{
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    margin: 3px;
+}
+ 
+::-webkit-scrollbar-track 
+{
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb 
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.7); 
+    border: 2px solid rgb(0, 0, 0, 0.3);
+}
+
+.prediction
+{
+    width: 4rem;
+    margin: 0rem;
+    padding: 0.2rem 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    border-right: 0.05px solid rgba(255, 255, 255, 0.5);
+    font-family: sans-serif;
+}
+
+.prediction p
+{
+    font-size: 0.65rem;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.prediction_weather_sign
+{
+    font-size: 1.5rem;
+    margin: 0.75rem;
+}
+
+.prediction_temp
+{
     font-size: 1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-align: left;
 }
 
-.df-container
+#last_pred
 {
-    width: 100%;
-    background-color: azure;
-    padding: 10px;
+    border: none;
 }
 
 /* weekly weather */ 
@@ -589,7 +640,7 @@ body
 .right
 {
     background-color: rgb(255, 255, 255, 0.7);
-    width: 40%;
+    width: 35%;
     margin: 2.5%;
     padding: 1%;
     border-radius: 1%;

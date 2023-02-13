@@ -8,7 +8,7 @@ function doDate()
     var mn = (date.getMinutes() < 10) ? ("0"+date.getMinutes()) : date.getMinutes();
     var datetime = d + "-" + m  + "-" + date.getFullYear() + ", " + hr + ":" + mn;
     console.log(day + ", " + datetime);
-    document.getElementsByClassName("day")[0].innerText = day + ", " + datetime + " hrs";
+    document.getElementsByClassName("day")[0].innerText = day + ", " + datetime + " hrs IST";
 }
 
 setInterval(doDate, 1000);
@@ -114,18 +114,50 @@ function operation(location)
             const str2 = arr.join(" ");
             document.getElementById("characteristics").innerHTML = str2 + ' (feels like ' + Math.round(result.main.feels_like) + '&#176;C)';
 
-            document.getElementById("wind_dir").childNodes[3].childNodes[1].innerHTML = 'Wind speed ' + Math.round(result.wind.speed) + ' m/s';
-            document.getElementById("wind_dir").childNodes[3].childNodes[3].innerHTML = 'Direction ' + Math.round(result.wind.deg) + ' deg';
+            document.getElementById("wind_dir").childNodes[3].childNodes[1].innerHTML = 'wind speed: ' + Math.round(result.wind.speed) + ' m/s';
+            document.getElementById("wind_dir").childNodes[3].childNodes[3].innerHTML = 'direction: ' + Math.round(result.wind.deg) + ' deg';
             console.log(document.getElementById("wind_dir").childNodes[3].childNodes);
+
             var ss = document.getElementById("sunrise-sunset").childNodes[3].childNodes;
-            ss[1].innerHTML = 'sunrise&nbsp;'+ timeConverter(result.sys.sunrise);
-            ss[3].innerHTML = 'sunset&nbsp;'+ timeConverter(result.sys.sunset);
+            ss[1].innerHTML = 'sunrise:&nbsp;'+ timeConverter(result.sys.sunrise) + ' IST';
+            ss[3].innerHTML = 'sunset:&nbsp;'+ timeConverter(result.sys.sunset) + ' IST';
             
             var hl = document.getElementById("high-low-temp").childNodes[3].childNodes;
-            hl[1].innerHTML = 'high&nbsp;'+ result.main.temp_max +' &#176;C';
-            hl[3].innerHTML = 'low&nbsp;&nbsp;'+ result.main.temp_min +' &#176;C';
+            hl[1].innerHTML = 'high:&nbsp;'+ result.main.temp_max +' &#176;C';
+            hl[3].innerHTML = 'low:&nbsp;&nbsp;'+ result.main.temp_min +' &#176;C';
         })
         .catch((err) => { console.log(err + "data may not be available for the latitude/longitude"); });  
+
+        const currdayprediction = "https://api.openweathermap.org/data/2.5/forecast?lat=" + loclat + "&lon=" + loclong + "&appid=1fab13d4279e8c4c4d96c5bd185098fa&units=metric";
+        console.log(location);
+        fetch(currdayprediction)
+        .then((response) => { return response.json(); })
+        .then((result) => 
+        { 
+            console.log(result);
+            var x = document.getElementsByClassName("prediction");
+
+            for(var i=0; i<7; i++)
+            {
+                console.log(x[i]);
+                var weatherid = result.list[i].weather[0].id; var weathericon = '';
+                if(weatherid == 800)
+                {
+                    weathericon = '<i class="fa-solid fa-sun"></i>';
+                }
+                else
+                {
+                    weathericon = wthr_icon[Math.floor(weatherid/100) - 2];
+                }
+                document.getElementsByClassName("prediction_date")[i].innerHTML = result.list[i].dt_txt.toString().substring(0, 10);
+                document.getElementsByClassName("prediction_time")[i].innerHTML = result.list[i].dt_txt.toString().substring(11, 5) + " hrs IST";
+                document.getElementsByClassName("prediction_weather_sign")[i].innerHTML = weathericon;
+                document.getElementsByClassName("prediction_temp")[i].innerHTML = Math.round(result.list[i].main.temp) + ' &#176;C';
+                console.log(result.list[i].main.temp);
+                console.log(result.list[i].weather[0].id);
+            }
+        })
+        .catch((err) => { console.log(err + "data may not be available for the latitude/longitude"); }); 
     })
     .catch((err) => { console.log(err + "something went wrong or data may not be available for the city name"); }); 
 }
