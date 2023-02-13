@@ -7,7 +7,6 @@ function doDate()
     var hr = (date.getHours() < 10) ? ("0"+date.getHours()) : date.getHours();
     var mn = (date.getMinutes() < 10) ? ("0"+date.getMinutes()) : date.getMinutes();
     var datetime = d + "-" + m  + "-" + date.getFullYear() + ", " + hr + ":" + mn;
-    console.log(day + ", " + datetime);
     document.getElementsByClassName("day")[0].innerText = day + ", " + datetime + " hrs IST";
 }
 
