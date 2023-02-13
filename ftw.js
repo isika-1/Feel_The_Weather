@@ -110,8 +110,9 @@ function operation(location)
             const str2 = arr.join(" ");
             document.getElementById("characteristics").innerHTML = str2 + ' (feels like ' + Math.round(result.main.feels_like) + '&#176;C)';
 
-            document.getElementById("wind_dir").childNodes[3].innerHTML = 'Wind blowing at ' + Math.round(result.wind.speed) + ' m/s speed with a direction of ' + Math.round(result.wind.deg) + ' degrees';
-
+            document.getElementById("wind_dir").childNodes[3].childNodes[1].innerHTML = 'Wind speed ' + Math.round(result.wind.speed) + ' m/s';
+            document.getElementById("wind_dir").childNodes[3].childNodes[3].innerHTML = 'Direction ' + Math.round(result.wind.deg) + ' deg';
+            console.log(document.getElementById("wind_dir").childNodes[3].childNodes);
             var ss = document.getElementById("sunrise-sunset").childNodes[3].childNodes;
             ss[1].innerHTML = 'sunrise&nbsp;'+ timeConverter(result.sys.sunrise);
             ss[3].innerHTML = 'sunset&nbsp;'+ timeConverter(result.sys.sunset);
