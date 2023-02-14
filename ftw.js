@@ -69,6 +69,19 @@ function timeConverter(UNIX_timestamp)
 var wthr_icon = new Array('<i class="fa-solid fa-cloud-bolt"></i>', '<i class="fa-solid fa-cloud-drizzle"></i>', '', '<i class="fa-solid fa-cloud-sun-rain"></i>', '<i class="fa-solid fa-snowflake"></i>', '<i class="fa-solid fa-bars-staggered"></i>', '<i class="fa-solid fa-cloud"></i>');
 var bg_img = new Array('./thunderstorm.jpg', './rainy.jpg', '', './rainy.jpg', './snowy.jpg', './haze.jpg', './cloudy.jpg');
 
+function myalert(x)
+{
+    const alert = document.getElementById('alert');
+    alert.innerHTML = x + '<button type="button" class="alert-btn-close" onclick="close_alert()"></button>';
+    console.log(alert);
+    document.getElementById("l-space").value = "";   
+}
+
+function close_alert()
+{
+    alert.innerHTML = "";
+}
+
 function operation(location)
 {
     doDate();
@@ -128,40 +141,33 @@ function operation(location)
         .catch((err) => { console.log(err + "data may not be available for the latitude/longitude"); });  
 
         const currdayprediction = "https://api.openweathermap.org/data/2.5/forecast?lat=" + loclat + "&lon=" + loclong + "&appid=1fab13d4279e8c4c4d96c5bd185098fa&units=metric";
-        console.log(location);
         fetch(currdayprediction)
         .then((response) => { return response.json(); })
         .then((result) => 
         { 
             console.log(result);
-            var x = document.getElementsByClassName("prediction");
-
             for(var i=1; i<=7; i++)
             {
-                console.log(x[i]);
                 var weatherid = result.list[i].weather[0].id; var weathericon = '';
-                if(weatherid == 800)
-                {
+                if(weatherid == 800) 
                     weathericon = '<i class="fa-solid fa-sun"></i>';
-                }
-                else
-                {
+                else 
                     weathericon = wthr_icon[Math.floor(weatherid/100) - 2];
-                }
                 document.getElementsByClassName("prediction_date")[i-1].innerHTML = result.list[i].dt_txt.toString().substring(0, 10);
                 document.getElementsByClassName("prediction_time")[i-1].innerHTML = result.list[i].dt_txt.toString().substring(11, 16) + " hrs IST";
                 document.getElementsByClassName("prediction_weather_sign")[i-1].innerHTML = weathericon;
                 document.getElementsByClassName("prediction_temp")[i-1].innerHTML = Math.round(result.list[i].main.temp) + ' &#176;C';
             }
+            document.getElementById("l-space").value = "";   
         })
-        .catch((err) => { console.log(err + "data may not be available for the latitude/longitude"); }); 
+        .catch((err) => { myalert("Oops! Data not available for the particular location"); }); 
     })
-    .catch((err) => { console.log(err + "something went wrong or data may not be available for the city name"); }); 
+    .catch((err) => { myalert("Oops! We cannot recognise this particular location. Please enter the name of the location correctly."); }); 
 }
 
 
 function get_location()
 {
     var location = document.getElementById("l-space").value;
-    operation(location);    
+    operation(location); 
 }
