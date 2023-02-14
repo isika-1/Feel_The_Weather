@@ -136,7 +136,7 @@ function operation(location)
             console.log(result);
             var x = document.getElementsByClassName("prediction");
 
-            for(var i=0; i<7; i++)
+            for(var i=1; i<=7; i++)
             {
                 console.log(x[i]);
                 var weatherid = result.list[i].weather[0].id; var weathericon = '';
@@ -148,12 +148,10 @@ function operation(location)
                 {
                     weathericon = wthr_icon[Math.floor(weatherid/100) - 2];
                 }
-                document.getElementsByClassName("prediction_date")[i].innerHTML = result.list[i].dt_txt.toString().substring(0, 10);
-                document.getElementsByClassName("prediction_time")[i].innerHTML = result.list[i].dt_txt.toString().substring(11, 5) + " hrs IST";
-                document.getElementsByClassName("prediction_weather_sign")[i].innerHTML = weathericon;
-                document.getElementsByClassName("prediction_temp")[i].innerHTML = Math.round(result.list[i].main.temp) + ' &#176;C';
-                console.log(result.list[i].main.temp);
-                console.log(result.list[i].weather[0].id);
+                document.getElementsByClassName("prediction_date")[i-1].innerHTML = result.list[i].dt_txt.toString().substring(0, 10);
+                document.getElementsByClassName("prediction_time")[i-1].innerHTML = result.list[i].dt_txt.toString().substring(11, 16) + " hrs IST";
+                document.getElementsByClassName("prediction_weather_sign")[i-1].innerHTML = weathericon;
+                document.getElementsByClassName("prediction_temp")[i-1].innerHTML = Math.round(result.list[i].main.temp) + ' &#176;C';
             }
         })
         .catch((err) => { console.log(err + "data may not be available for the latitude/longitude"); }); 
