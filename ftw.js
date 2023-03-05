@@ -146,7 +146,7 @@ function operation(location)
         .then((result) => 
         { 
             console.log(result);
-            for(var i=1; i<=7; i++)
+            for(var i=1; i<=8; i++)
             {
                 var weatherid = result.list[i].weather[0].id; var weathericon = '';
                 if(weatherid == 800) 

@@ -359,6 +359,7 @@ body
 #sunrise-sunset ul li
 {
     font-size: 0.8rem;
+    margin-bottom: 0.2rem;
 }
 
 #high-low-temp
@@ -386,6 +387,7 @@ body
 #high-low-temp ul li
 {
     font-size: 0.8rem;
+    margin-bottom: 0.2rem;
 }
 
 #wind_dir
@@ -412,6 +414,7 @@ body
 #wind_dir ul li
 {
     font-size: 0.8rem;
+    margin-bottom: 0.2rem;
 }
 
 @media (max-width: 585px) 
@@ -663,6 +666,7 @@ body
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
+    color:rgb(255, 255, 255, 0.7);
 }
 
 @media (max-width: 900px) 
@@ -686,6 +690,35 @@ body
         padding: 1%;
         border-radius: 1%;
     }
+}
+
+.weekly_prediction
+{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.weekly_left
+{
+    width: 30%;
+    border: 0.1px solid red;
+}
+
+.weekly_right
+{
+    width: 65%;
+    border: 0.1px solid red;
+}
+
+.weekly_day, .weekly_night
+{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-around;
+    border: 0.1px solid blue;
 }
 
 .map
