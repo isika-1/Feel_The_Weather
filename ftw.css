@@ -698,18 +698,35 @@ body
     flex-wrap: wrap;
     text-align: center;
     justify-content: space-around;
+    font-family: sans-serif;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.05px solid rgba(255, 255, 255, 0.3);
+}
+
+#last_weekly_prediction
+{
+    border-bottom: none;
 }
 
 .weekly_left
 {
     width: 30%;
-    border: 0.1px solid red;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-right: 0.1px solid rgba(255, 255, 255, 0.1);
+}
+
+.weekly_left p
+{
+    margin: 0px;
+    padding: 1.5rem 0rem;
 }
 
 .weekly_right
 {
+    font-size: 0.9rem;
     width: 65%;
-    border: 0.1px solid red;
 }
 
 .weekly_day, .weekly_night
@@ -718,8 +735,98 @@ body
     flex-wrap: wrap;
     text-align: center;
     justify-content: space-around;
-    border: 0.1px solid blue;
 }
+
+.weekly_day
+{
+    border-bottom: 0.1px solid rgba(255, 255, 255, 0.1);
+}
+
+.weekly_prediction_time
+{
+    width: 40%;
+    margin: 0px;
+    padding: 0.5rem;
+}
+
+.weekly_prediction_weather_sign
+{
+    width: 25%;
+    font-size: 1.25rem;
+    padding: 0.25rem;
+}
+
+.weekly_prediction_temp
+{
+    width: 20%;
+    padding: 0.5rem;
+}
+
+@media (max-width: 545px)
+{
+    .weekly_prediction
+    {
+        display: block;
+        font-family: sans-serif;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 0.05px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    #last_weekly_prediction
+    {
+        border-bottom: none;
+    }
+    
+    .weekly_left
+    {
+        font-size: 0.9rem;
+        font-weight: 500;
+        width: 100%;
+        border-right: none;
+        border-bottom: 0.1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .weekly_left p
+    {
+        margin: 0px;
+        padding: 0.25rem 0rem;
+    }
+    
+    .weekly_right
+    {
+        font-size: 0.75rem;
+        width: 100%;
+    }
+    
+    .weekly_day, .weekly_night
+    {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        justify-content: space-around;
+    }
+    
+    .weekly_prediction_time
+    {
+        width: 40%;
+        margin: 0px;
+        padding: 0.5rem 0rem;
+    }
+    
+    .weekly_prediction_weather_sign
+    {
+        width: 25%;
+        font-size: 1rem;
+        padding: 0.25rem 0rem;
+    }
+    
+    .weekly_prediction_temp
+    {
+        width: 20%;
+        padding: 0.5rem 0rem;
+    }
+} 
 
 .map
 {

@@ -159,6 +159,38 @@ function operation(location)
                 document.getElementsByClassName("prediction_temp")[i-1].innerHTML = Math.round(result.list[i].main.temp) + ' &#176;C';
             }
             document.getElementById("l-space").value = "";   
+            var i = 0, fl = 0, count = 0;
+            while(i<40)
+            {
+                var dt = result.list[i].dt_txt.toString().substring(11);
+                if(dt == "09:00:00")
+                {
+                    fl = 1;
+                    var weatherid = result.list[i].weather[0].id; var weathericon = '';
+                    if(weatherid == 800) 
+                        weathericon = '<i class="fa-solid fa-sun"></i>';
+                    else 
+                        weathericon = wthr_icon[Math.floor(weatherid/100) - 2];
+                    document.getElementsByClassName("weekly_prediction_time")[count].innerHTML = dt.substring(0, 5) + " hrs IST";
+                    document.getElementsByClassName("weekly_prediction_weather_sign")[count].innerHTML = weathericon;
+                    document.getElementsByClassName("weekly_prediction_temp")[count].innerHTML = Math.round(result.list[i].main.temp) + ' &#176;C';
+                    document.getElementsByClassName("weekly_prediction_date")[count/2].innerHTML = result.list[i].dt_txt.toString().substring(0, 10);
+                    count++;
+                }
+                else if(dt == "21:00:00" && fl == 1)
+                {
+                    fl = 0;
+                    var weatherid = result.list[i].weather[0].id; var weathericon = '';
+                    if(weatherid == 800) 
+                        weathericon = '<i class="fa-solid fa-sun"></i>';
+                    else 
+                        weathericon = wthr_icon[Math.floor(weatherid/100) - 2];
+                    document.getElementsByClassName("weekly_prediction_time")[count].innerHTML = dt.substring(0, 5) + " hrs IST";
+                    document.getElementsByClassName("weekly_prediction_weather_sign")[count].innerHTML = weathericon;
+                    document.getElementsByClassName("weekly_prediction_temp")[count++].innerHTML = Math.round(result.list[i].main.temp) + ' &#176;C';
+                }
+                i++;
+            }
         })
         .catch((err) => { myalert("Oops! Data not available for the particular location"); }); 
     })
