@@ -87,18 +87,16 @@ function operation(location)
     doDate();
     var loclat = 0; var loclong = 0;
     const loc_url = "https://api.openweathermap.org/geo/1.0/direct?q=" + location + "&limit=1&appid=1fab13d4279e8c4c4d96c5bd185098fa";
-    console.log(location);
+    
     fetch(loc_url)
     .then((response) => { return response.json(); })
     .then((result) => 
     { 
-        console.log(result[0]);
         loclat = result[0].lat;
         loclong = result[0].lon;
-        console.log(loclat + ", " + loclong);
 
         const weather_url = "https://api.openweathermap.org/data/2.5/weather?lat=" + loclat + "&lon=" + loclong + "&appid=1fab13d4279e8c4c4d96c5bd185098fa&units=metric";
-        console.log(location);
+
         fetch(weather_url)
         .then((response) => { return response.json(); })
         .then((result) => 
@@ -128,8 +126,7 @@ function operation(location)
 
             document.getElementById("wind_dir").childNodes[3].childNodes[1].innerHTML = 'wind speed: ' + Math.round(result.wind.speed) + ' m/s';
             document.getElementById("wind_dir").childNodes[3].childNodes[3].innerHTML = 'direction: ' + Math.round(result.wind.deg) + ' deg';
-            console.log(document.getElementById("wind_dir").childNodes[3].childNodes);
-
+            
             var ss = document.getElementById("sunrise-sunset").childNodes[3].childNodes;
             ss[1].innerHTML = 'sunrise:&nbsp;'+ timeConverter(result.sys.sunrise) + ' IST';
             ss[3].innerHTML = 'sunset:&nbsp;'+ timeConverter(result.sys.sunset) + ' IST';
@@ -138,14 +135,13 @@ function operation(location)
             hl[1].innerHTML = 'high:&nbsp;'+ result.main.temp_max +' &#176;C';
             hl[3].innerHTML = 'low:&nbsp;&nbsp;'+ result.main.temp_min +' &#176;C';
         })
-        .catch((err) => { console.log(err + "data may not be available for the latitude/longitude"); });  
+        .catch((err) => { console.log(err + "Data may not be available for the latitude/longitude"); });  
 
         const currdayprediction = "https://api.openweathermap.org/data/2.5/forecast?lat=" + loclat + "&lon=" + loclong + "&appid=1fab13d4279e8c4c4d96c5bd185098fa&units=metric";
         fetch(currdayprediction)
         .then((response) => { return response.json(); })
         .then((result) => 
         { 
-            console.log(result);
             for(var i=1; i<=8; i++)
             {
                 var weatherid = result.list[i].weather[0].id; var weathericon = '';
@@ -192,9 +188,93 @@ function operation(location)
                 i++;
             }
         })
-        .catch((err) => { myalert("Oops! Data not available for the particular location"); }); 
+        .catch((err) => { console.log(err + "Oops! Data not available for the particular location"); }); 
+
+        const oiprediction = "http://api.openweathermap.org/data/2.5/air_pollution?lat=" + loclat + "&lon=" + loclong + "&appid=1fab13d4279e8c4c4d96c5bd185098fa";
+        fetch(oiprediction)
+        .then((response) => { return response.json(); })
+        .then((result) => 
+        { 
+            console.log(result);
+            var aqi = new Array('', 'Good', 'Fair', 'Moderate', 'Poor', 'Very Poor');
+            document.getElementsByClassName("air_quality_index_value")[0].innerHTML = aqi[result.list[0].main.aqi];
+            
+            var acc_co = new Array(0, 4400, 9400, 12400, 15400);
+            document.getElementsByClassName("value")[0].innerHTML = result.list[0].components.co + " &micro;g/m<sup>3</sup>";
+            document.getElementsByClassName("rating")[0].innerHTML = "Very Poor";
+            for(var i=0; i<acc_co.length; i++)
+            {
+                if(parseInt(result.list[0].components.co) < parseInt(acc_co[i]))
+                {
+                    document.getElementsByClassName("rating")[0].innerHTML = aqi[i];
+                    break;
+                }
+            }
+
+            var acc_no2 = new Array(0, 40, 70, 150, 200);
+            document.getElementsByClassName("value")[1].innerHTML = result.list[0].components.no2 + " &micro;g/m<sup>3</sup>";
+            document.getElementsByClassName("rating")[1].innerHTML = "Very Poor";
+            for(var i=0; i<acc_no2.length; i++)
+            {
+                if(parseInt(result.list[0].components.no2) < parseInt(acc_no2[i]))
+                {
+                    document.getElementsByClassName("rating")[1].innerHTML = aqi[i];
+                    break;
+                }
+            }
+
+            var acc_o3 = new Array(0, 60, 100, 140, 180);
+            document.getElementsByClassName("value")[2].innerHTML = result.list[0].components.o3 + " &micro;g/m<sup>3</sup>";
+            document.getElementsByClassName("rating")[2].innerHTML = "Very Poor";
+            for(var i=0; i<acc_o3.length; i++)
+            {
+                if(parseInt(result.list[0].components.o3) < parseInt(acc_o3[i]))
+                {
+                    document.getElementsByClassName("rating")[2].innerHTML = aqi[i];
+                    break;
+                }
+            }
+            
+            var acc_so2 = new Array(0, 20, 80, 250, 350);
+            document.getElementsByClassName("value")[3].innerHTML = result.list[0].components.so2 + " &micro;g/m<sup>3</sup>";
+            document.getElementsByClassName("rating")[3].innerHTML = "Very Poor";
+            for(var i=0; i<acc_so2.length; i++)
+            {
+                if(parseInt(result.list[0].components.so2) < parseInt(acc_so2[i]))
+                {
+                    document.getElementsByClassName("rating")[3].innerHTML = aqi[i];
+                    break;
+                }
+            }
+
+            var acc_pm2_5 = new Array(0, 10, 25, 50, 75);
+            document.getElementsByClassName("value")[4].innerHTML = result.list[0].components.pm2_5 + " &micro;g/m<sup>3</sup>";
+            document.getElementsByClassName("rating")[4].innerHTML = "Very Poor";
+            for(var i=0; i<acc_pm2_5.length; i++)
+            {
+                if(parseInt(result.list[0].components.pm2_5) < parseInt(acc_pm2_5[i]))
+                {
+                    document.getElementsByClassName("rating")[4].innerHTML = aqi[i];
+                    break;
+                }
+            }
+
+            var acc_pm10 = new Array(0, 20, 50, 100, 200);
+            document.getElementsByClassName("value")[5].innerHTML = result.list[0].components.pm10 + " &micro;g/m<sup>3</sup>";
+            document.getElementsByClassName("rating")[5].innerHTML = "Very Poor";
+            for(var i=0; i<acc_pm10.length; i++)
+            {
+                if(parseInt(result.list[0].components.pm10) < parseInt(acc_pm10[i]))
+                {
+                    document.getElementsByClassName("rating")[5].innerHTML = aqi[i];
+                    break;
+                }
+            }
+            
+        })
+        .catch((err) => { console.log(err + "Oops! Other information is not available for this particular location"); });
     })
-    .catch((err) => { myalert("Oops! We cannot recognise this particular location. Please enter the name of the location correctly."); }); 
+    .catch((err) => { console.log(err + "Oops! We cannot recognise this particular location. Please enter the name of the location correctly."); }); 
 }
 
 

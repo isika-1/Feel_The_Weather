@@ -16,7 +16,6 @@ body
     margin: 0px;
     padding: 0px;
     overflow-x: hidden;
-    /* border: 1px solid rgb(0, 0, 0, 0); */
 }
   
 .bg-text 
@@ -916,29 +915,86 @@ body
     }
 } 
 
-.map
-{
-    margin: auto;
-    width: 80%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    background-color: rgb(255, 255, 255, 0.5);
-    padding: 1.5rem;
-    border-radius: 1%;
-}
-
 .info
 {
     margin: auto;
-    width: 86%;
+    width: 75%;
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: rgb(255, 255, 255, 0.5);
-    padding: 1.5rem;
+    background-color: rgb(255, 255, 255, 0.7);
+    padding: 1rem;
     border-radius: 1%;
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
-    justify-content: space-around;
 }
 
+.air_quality_index
+{
+    text-align: left;
+    margin-left: 5%;
+    color: rgba(0, 0, 0, 0.7);
+    font-family: monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding-bottom: 0.5rem;
+}
+
+.air_quality_index span
+{
+    color: rgba(0, 0, 0, 0.7);
+    font-family: monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.air_component_chart
+{
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color:rgb(255, 255, 255, 0.7);
+    
+}
+
+.air_component
+{
+    border-bottom: 0.1px solid rgba(255, 255, 255, 0.3);
+    margin: 0rem;
+    padding: 0.75rem;
+    font-family: sans-serif;
+    font-size: 0.85rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.air_component .name
+{
+    text-align: left;
+    width: 45%;
+}
+
+.air_component .value
+{
+    text-align: center;
+    width: 30%;
+}
+
+.air_component .rating
+{
+    text-align: right;
+    width: 23%;
+}
+
+#last_air_component
+{
+    border-bottom: none;
+}
+
+#my_copyright
+{
+    margin: 2rem;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: rgb(255, 255, 255, 0.7);
+}
