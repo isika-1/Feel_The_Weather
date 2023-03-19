@@ -715,12 +715,18 @@ body
     font-size: 0.9rem;
     font-weight: 500;
     border-right: 0.1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 0rem;
 }
 
-.weekly_left p
+.weekly_prediction_date
 {
     margin: 0px;
-    padding: 1.5rem 0rem;
+    padding-top: 0.75rem;
+}
+
+.weekly_prediction_icon
+{
+    font-size: 1.25rem;
 }
 
 .weekly_right
@@ -762,6 +768,80 @@ body
     padding: 0.5rem;
 }
 
+@media (max-width: 1445px) and (min-width: 900px)
+{
+    .weekly_prediction
+    {
+        display: block;
+        font-family: sans-serif;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 0.05px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    #last_weekly_prediction
+    {
+        border-bottom: none;
+    }
+    
+    .weekly_left
+    {
+        font-size: 0.9rem;
+        font-weight: 500;
+        width: 100%;
+        border-right: none;
+        border-bottom: 0.1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 1rem;
+    }
+    
+    .weekly_prediction_date
+    {
+        margin: 0px;
+        padding: 0.25rem 0rem;
+        margin-left: 1rem;
+        display: inline;
+    }
+
+    .weekly_prediction_icon
+    {
+        display: inline;
+    }
+    
+    .weekly_right
+    {
+        font-size: 0.75rem;
+        width: 100%;
+    }
+    
+    .weekly_day, .weekly_night
+    {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        justify-content: space-around;
+    }
+    
+    .weekly_prediction_time
+    {
+        width: 40%;
+        margin: 0px;
+        padding: 0.5rem 0rem;
+    }
+    
+    .weekly_prediction_weather_sign
+    {
+        width: 25%;
+        font-size: 1rem;
+        padding: 0.25rem 0rem;
+    }
+    
+    .weekly_prediction_temp
+    {
+        width: 20%;
+        padding: 0.5rem 0rem;
+    }
+}
+
 @media (max-width: 545px)
 {
     .weekly_prediction
@@ -785,12 +865,20 @@ body
         width: 100%;
         border-right: none;
         border-bottom: 0.1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 1rem;
     }
     
-    .weekly_left p
+    .weekly_prediction_date
     {
         margin: 0px;
         padding: 0.25rem 0rem;
+        margin-left: 1rem;
+        display: inline;
+    }
+
+    .weekly_prediction_icon
+    {
+        display: inline;
     }
     
     .weekly_right
@@ -831,7 +919,7 @@ body
 .map
 {
     margin: auto;
-    width: 86%;
+    width: 80%;
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: rgb(255, 255, 255, 0.5);
