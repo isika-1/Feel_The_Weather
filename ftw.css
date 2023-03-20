@@ -208,6 +208,63 @@ body
     }
 }
 
+/*  alert  */
+#alert
+{
+    width: 70%;
+    overflow: hidden;
+    top: 6.25rem;
+    background-color: rgba(0, 0, 0, 0.9);
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 5%;
+    padding-right: 5%;
+    position: fixed; 
+    box-shadow: 0px 6px 4px rgb(0, 0, 0, 0.3);
+    z-index: 2;
+    visibility: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-around;
+}
+
+#alert-msg
+{
+    color: rgb(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+    font-family: monospace;
+    width: 80%
+}
+
+#alert-btn
+{
+    width: 15%;
+    margin: 0;
+    margin-left: 2%;
+    align-items: center;
+    display: flex;
+}
+
+.alert-btn-close
+{
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    padding: 0.5rem;
+    height: 2rem;
+    width: 2rem;
+    margin: auto;
+}
+
+.alert-btn-close i
+{
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
 /* view parts -> daily, weekly */
 
 .partview

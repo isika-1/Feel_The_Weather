@@ -72,14 +72,17 @@ var bg_img = new Array('./thunderstorm.jpg', './rainy.jpg', '', './rainy.jpg', '
 function myalert(x)
 {
     const alert = document.getElementById('alert');
-    alert.innerHTML = x + '<button type="button" class="alert-btn-close" onclick="close_alert()"></button>';
+    alert.style.visibility = "visible";
+    alert.innerHTML = '<p id="alert-msg">' + x + '</p><p id="alert-btn"><button type="button" class="alert-btn-close" onclick="close_alert()"><i class="fa-solid fa-xmark"></i></button></p>';
     console.log(alert);
     document.getElementById("l-space").value = "";   
 }
 
 function close_alert()
 {
+    const alert = document.getElementById('alert');
     alert.innerHTML = "";
+    alert.style.visibility = "hidden";
 }
 
 function operation(location)
@@ -274,7 +277,7 @@ function operation(location)
         })
         .catch((err) => { console.log(err + "Oops! Other information not available for this particular location"); });
     })
-    .catch((err) => { console.log(err + "Oops! We cannot recognise this particular location. Please enter the name of the location correctly."); }); 
+    .catch((err) => { myalert("Oops! We cannot recognise this particular location. Please enter the name of the location correctly."); }); 
 }
 
 
