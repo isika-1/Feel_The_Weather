@@ -135,7 +135,7 @@ function operation(location)
             hl[1].innerHTML = 'high:&nbsp;'+ result.main.temp_max +' &#176;C';
             hl[3].innerHTML = 'low:&nbsp;&nbsp;'+ result.main.temp_min +' &#176;C';
         })
-        .catch((err) => { console.log(err + "Data may not be available for the latitude/longitude"); });  
+        .catch((err) => { console.log(err + "Current data not be available for the location"); });  
 
         const currdayprediction = "https://api.openweathermap.org/data/2.5/forecast?lat=" + loclat + "&lon=" + loclong + "&appid=1fab13d4279e8c4c4d96c5bd185098fa&units=metric";
         fetch(currdayprediction)
@@ -188,7 +188,7 @@ function operation(location)
                 i++;
             }
         })
-        .catch((err) => { console.log(err + "Oops! Data not available for the particular location"); }); 
+        .catch((err) => { console.log(err + "Oops! Future data not available for the particular location"); }); 
 
         const oiprediction = "https://api.openweathermap.org/data/2.5/air_pollution?lat=" + loclat + "&lon=" + loclong + "&appid=1fab13d4279e8c4c4d96c5bd185098fa";
         fetch(oiprediction)
@@ -272,7 +272,7 @@ function operation(location)
             }
             
         })
-        .catch((err) => { console.log(err + "Oops! Other information is not available for this particular location"); });
+        .catch((err) => { console.log(err + "Oops! Other information not available for this particular location"); });
     })
     .catch((err) => { console.log(err + "Oops! We cannot recognise this particular location. Please enter the name of the location correctly."); }); 
 }
