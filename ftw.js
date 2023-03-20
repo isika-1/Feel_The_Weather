@@ -190,7 +190,7 @@ function operation(location)
         })
         .catch((err) => { console.log(err + "Oops! Data not available for the particular location"); }); 
 
-        const oiprediction = "http://api.openweathermap.org/data/2.5/air_pollution?lat=" + loclat + "&lon=" + loclong + "&appid=1fab13d4279e8c4c4d96c5bd185098fa";
+        const oiprediction = "https://api.openweathermap.org/data/2.5/air_pollution?lat=" + loclat + "&lon=" + loclong + "&appid=1fab13d4279e8c4c4d96c5bd185098fa";
         fetch(oiprediction)
         .then((response) => { return response.json(); })
         .then((result) => 
